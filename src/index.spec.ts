@@ -2,10 +2,10 @@ import { contentEncoding } from "./index";
 import { Request, Response } from "servie/dist/node";
 import { createGzip } from "zlib";
 
-describe("popsicle user agent", () => {
+describe("popsicle content encoding", () => {
   const req = new Request("http://example.com/");
 
-  it("should use cookie store for requests", async () => {
+  it("should unzip response", async () => {
     const transport = contentEncoding();
 
     const r = req.clone();
@@ -14,8 +14,8 @@ describe("popsicle user agent", () => {
       body.end("Hello world");
       return new Response(body, {
         headers: {
-          "Content-Encoding": "gzip"
-        }
+          "Content-Encoding": "gzip",
+        },
       });
     });
 
